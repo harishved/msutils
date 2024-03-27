@@ -11,7 +11,7 @@ old_flags = t.getcol("FLAG") # Existing flag data
 coldesc = t.getcoldesc("FLAG") # Column descriptor
 dminfo = {'TYPE': 'TiledShapeStMan','SPEC': {'DEFAULTTILESHAPE': [npol, nchan, 128]}} # Table info (minimalist)
 t.renamecol("FLAG","OLD_FLAG") # Rename existing flag column
-t.addcols(tab.maketabledesc(tab.makesoldesc("FLAG",coldesc)),dminfo) # Add new flag column
+t.addcols(tab.maketabdesc(tab.makesoldesc("FLAG",coldesc)),dminfo) # Add new flag column
 t.putcol("FLAG",old_flags) # copy old flags into new flag column
 t.flush()
 t.close()
