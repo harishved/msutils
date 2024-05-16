@@ -150,14 +150,14 @@ def calc_weights(msname,colname,SEFD=300,update_ms=False):
       t = tab.table(msname)
    #
    # Check if SIGMA and WEIGHT columns exist; id not then add them
-   nchan,npol = t[0]["DATA"].shape
+   nchan,npol = t[0][colname].shape
    allcols = t.colnames()
    for tp in ["SIGMA_SPECTRUM","WEIGHT_SPECTRUM"]:
       if tp not in allcols:
          print ("Adding column %s"%tp)
          dminfo = {'TYPE': 'TiledShapeStMan','SPEC': {'DEFAULTTILESHAPE': [npol, nchan, 128]}}
          dminfo["NAME"] = tp
-         cd = t.getcoldesc("DATA")
+         cd = t.getcoldesc(colname)
          cd["NAME"] = tp
          cd["valueType"]='float'
          t.addcols(tab.maketabdesc(tab.makecoldesc(tp,cd)),dminfo)
